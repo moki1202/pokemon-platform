@@ -1,9 +1,11 @@
-const AboutPage = () => {
+import React from 'react'
+
+const HowToPlay = () => {
   return (
     <>
-      <div className='absolute mt-[100px]'> didhwaiyudhai</div>
+      <div> hello</div>
     </>
   )
 }
 
-export default AboutPage
+export default HowToPlay

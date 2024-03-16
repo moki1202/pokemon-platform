@@ -16,7 +16,7 @@
   background: linear-gradient(to bottom, #f30202, #f5e218);
 }
 
-.pokemon-cards:hover {
+.pokemon-card:hover {
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5),
     0 0 30px rgba(255, 0, 0, 0.3);
   transition: 1s;
