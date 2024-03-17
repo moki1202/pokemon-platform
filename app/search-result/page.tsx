@@ -11,7 +11,7 @@ const SearchResult = () => {
   const updatedPokemonData = (pokemonData as any[]).map((pokemon) => {
     const pokemonIndex =
       pokemon.url.split('/')[pokemon.url.split('/').length - 2]
-    const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`
+    const image = `/assets/images/svg/${pokemonIndex}.svg`
     return { ...pokemon, image }
   })
   const filteredPokemon = updatedPokemonData.filter((pokemon) =>

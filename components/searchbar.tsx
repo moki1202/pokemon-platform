@@ -8,15 +8,17 @@ const SearchBar = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [search, setSearch] = useState<string>('')
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value)
   }
+
   const handleSearch = () => {
     dispatch(setSearchQuery(search))
     router.push('/search-result')
   }
+
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(event)
     if (event.key === 'Enter') {
       handleSearch()
     }

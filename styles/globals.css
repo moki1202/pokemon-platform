@@ -16,10 +16,42 @@
   background: linear-gradient(to bottom, #f30202, #f5e218);
 }
 
-.pokemon-card:hover {
+.navbar {
+  background: linear-gradient(to right, #8e44ad, #f7afd4);
+}
+
+.pokemon-card-container {
+  width: 17rem;
+  height: 25rem;
+}
+
+.pokemon-card-container:hover {
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5),
     0 0 30px rgba(255, 0, 0, 0.3);
   transition: 1s;
+}
+
+.pokemon-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemon-img {
+  max-width: 70%;
+  max-height: 70%;
+}
+
+.fusion-overlay {
+  width: 30rem;
+  height: 25rem;
+}
+
+.fusion-container {
+  width: 70%;
+  height: 70%;
+  display: flex;
 }
 
 .gradient {

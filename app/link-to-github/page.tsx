@@ -1,8 +1,14 @@
-export const GithubLink = () => {
+// pages/leaderboard.tsx
+
+import React from 'react'
+
+const GitHub: React.FC = () => {
   return (
-    <>
-      <div className='absolute mt-[50px] px-10 py-10'>Contact us now</div>
-    </>
+    <div>
+      <h1>Github Page</h1>
+      {/* Add your Github content here */}
+    </div>
   )
 }
-export default GithubLink
+
+export default GitHub
