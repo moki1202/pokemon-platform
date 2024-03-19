@@ -10,7 +10,6 @@ const HowToPlay: React.FC = () => {
 
   const [pokemonNo, setPokemonNo] = useState<number>(1)
   const [playerInput, setPlayerInput] = useState<string>('')
-  const [buttonText, setButtonText] = useState<string>('')
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerInput(event.target.value)
@@ -41,10 +40,6 @@ const HowToPlay: React.FC = () => {
 
   const pokemon1: string = `/assets/images/svg/${pokemonNo}.svg`
 
-  const handleButtonTextChange = (newButtonText: string) => {
-    setButtonText(newButtonText)
-  }
-
   const shuffleArray = (array: string[]) => {
     const shuffledArray = [...array]
     for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -57,27 +52,13 @@ const HowToPlay: React.FC = () => {
     return shuffledArray
   }
   //conditionally render all the options
-  let shuffleOptions: string[] = []
-  if (buttonText === `Let's Play`) {
-    console.log('if is being fulfilled')
-    const wrongItems = (pokemonData as any[])
-      .filter((item: { url: string }) => item.url !== url)
-      .map((item: { name: string }) => item.name)
-    const shuffleArr = shuffleArray(wrongItems).slice(0, 4)
-    const rightAns = filteredData.map((item: { name: string }) => item.name)
-    const combinedOptions = [...rightAns, ...shuffleArr]
-    shuffleOptions = shuffleArray(combinedOptions)
-  }
 
   return (
     <>
       <div className='w-screen h-screen flex items-center justify-center'>
-        <div className='fusion-overlay flex max-w-sm w-max items-center justify-center px-2  flex-wrap py-4 relative'>
-          <div className='fusion-container flex-col justify-center items-center object-contain mt-[20px] w-max-[100px] h-max-[100px]'>
-            <PokemonFusion
-              pokemon={pokemon1}
-              onButtonTextChange={handleButtonTextChange}
-            />
+        <div className='fusion-overlay flex items-center justify-center px-2  flex-wrap py-4 relative'>
+          <div className='fusion-container flex-col justify-center items-center'>
+            <PokemonFusion pokemon={pokemon1} />
           </div>
           <div className='relative mt-[12rem]'>
             <input
@@ -90,24 +71,6 @@ const HowToPlay: React.FC = () => {
             />
           </div>
         </div>
-        <div className='relative '>
-          {shuffleOptions.length > 0 && (
-            <div>
-              {shuffleOptions.map((option, index) => (
-                <div key={index}>{option}</div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-      <div className='relative '>
-        {shuffleOptions.length > 0 && (
-          <div>
-            {shuffleOptions.map((option, index) => (
-              <div key={index}>{option}</div>
-            ))}
-          </div>
-        )}
       </div>
     </>
   )

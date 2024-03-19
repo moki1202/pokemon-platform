@@ -23,7 +23,7 @@ export const Navbar = () => {
         <Link href='/pokemon-cards' className='flex-grow'>
           PokeDoc
         </Link>
-        <Link href='/leaderboard' className='flex-grow'>
+        <Link href='/pokemon-scribble' className='flex-grow'>
           leaderboard
         </Link>
         <div className='flex mr-4 justify-center items-center'>

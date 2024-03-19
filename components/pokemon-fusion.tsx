@@ -3,13 +3,9 @@ import React, { useState, useEffect } from 'react'
 
 interface PokemonFusionProps {
   pokemon: string
-  onButtonTextChange: (buttonText: string) => void
 }
 
-const PokemonFusion: React.FC<PokemonFusionProps> = ({
-  pokemon,
-  onButtonTextChange,
-}) => {
+const PokemonFusion: React.FC<PokemonFusionProps> = ({ pokemon }) => {
   const [svgParts, setSvgParts] = useState<string[]>([])
   const [count, setCount] = useState<number>(0)
   const [buttonText, setButtonText] = useState<string>(`Let's Play`)
@@ -20,8 +16,8 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({
       const svgText = await response.text()
 
       // Split the SVG into ten parts 10 point system
-      const partSize = svgText.length / 5
-      const parts = Array.from({ length: 5 }, (_, index) =>
+      const partSize = svgText.length / 8
+      const parts = Array.from({ length: 8 }, (_, index) =>
         svgText.slice(index * partSize, (index + count) * partSize)
       )
 
@@ -32,14 +28,13 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({
 
   const handleClick = () => {
     setButtonText(`Next Hint`)
-    if (count < 5) {
+    if (count < 8) {
       setCount((prevCount) => prevCount + 1)
     }
-    onButtonTextChange(buttonText)
   }
   return (
     <>
-      <div className='flex py-3 flex-wrap flex-between'>
+      <div className='relative top-[2rem] py-3 w-max-[100px] h-max-[100px]'>
         {svgParts.slice(0, 1).map((part, index) => (
           <div key={index} dangerouslySetInnerHTML={{ __html: part }} />
         ))}
