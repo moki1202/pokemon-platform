@@ -1,7 +1,13 @@
+'use client'
 import Link from 'next/link'
 import SearchBar from './searchbar'
+import { useRouter } from 'next/navigation'
 
 export const Navbar = () => {
+  const router = useRouter()
+  const handleSearch = () => {
+    router.push('auth/signup')
+  }
   return (
     <nav>
       <div className='navbar py-4 px-2 flex w-full justify-between items-center text-white fixed bg-opacity-100 z-50'>
@@ -26,6 +32,12 @@ export const Navbar = () => {
           </Link>
           <img src='/assets/logo/github.svg' className='px-2 ' />
         </div>
+        <button
+          onClick={handleSearch}
+          className='bg-red-500 text-white px-4 py-1 rounded-full ml-2'
+        >
+          Login
+        </button>
       </div>
     </nav>
   )
