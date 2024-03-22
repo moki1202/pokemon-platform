@@ -12,7 +12,7 @@ const Card: React.FC<Pokemon> = ({ name, image }) => {
       <div className='pokemon-card justify-center flex-between'>
         <img className='pokermon-img flex-grow' src={image} alt={name} />
         <div className='flex justify-center '>
-          <div className=' font-bold text-xl mb-2'>{name}</div>
+          <div className=' font-bold text-xl mb-2'>{name.toUpperCase()}</div>
         </div>
       </div>
     </div>

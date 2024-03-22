@@ -5,11 +5,13 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storageSession from 'redux-persist/lib/storage/session'
 import pokemonReducer from './features/pokemon-list/pokemonSlice'
 import searchReducer from './features/search-bar/searchpokemonSlice'
+import pointsReducer from './features/points-game2/pointsgame2slice'
 
 // Combine reducers
 const rootReducer = combineReducers({
   pokemon: pokemonReducer,
   search: searchReducer,
+  points: pointsReducer,
 })
 
 // Configure persist reducer

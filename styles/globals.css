@@ -103,9 +103,28 @@
   filter: grayscale(100%) brightness(0%) contrast(100%);
 }
 
-@media screen and (max-width: 640px) {
-  .main {
-    padding: 0;
+.congratulations-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.congratulations-text {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.pokemon-card-container {
+  position: relative;
+}
+
+/* CSS Animation for Celebration */
+@keyframes confetti {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200px) rotate(360deg);
   }
 }
 

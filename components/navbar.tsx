@@ -2,11 +2,29 @@
 import Link from 'next/link'
 import SearchBar from './searchbar'
 import { useRouter } from 'next/navigation'
+import { Option } from './dropdown'
+import { useState } from 'react'
+import DropdownMenu from './dropdown'
 
 export const Navbar = () => {
   const router = useRouter()
+  const [showDropdown, setShowDropdown] = useState(false)
+
+  const handleGameClick = () => {
+    setShowDropdown(!showDropdown)
+  }
+
+  const handleGameSelect = (route: string) => {
+    router.push(route)
+    setShowDropdown(false)
+  }
+
+  const gameOptions: Option[] = [
+    { label: 'Game 1', route: '/how-to-play' },
+    { label: 'Game 2', route: '/pokemon-scribble' },
+  ]
   const handleSearch = () => {
-    router.push('auth/signup')
+    router.push('auth/login')
   }
   return (
     <nav>
@@ -17,9 +35,14 @@ export const Navbar = () => {
         <div className='flex-grow mr-20'>
           <SearchBar />
         </div>
-        <Link href='/how-to-play' className='flex-grow'>
-          How to Play
-        </Link>
+        <div className='relative flex-grow'>
+          <button onClick={handleGameClick} className='flex-grow'>
+            Games
+          </button>
+          {showDropdown && (
+            <DropdownMenu options={gameOptions} onSelect={handleGameSelect} />
+          )}
+        </div>
         <Link href='/pokemon-cards' className='flex-grow'>
           PokeDoc
         </Link>
