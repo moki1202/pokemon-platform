@@ -14,9 +14,12 @@ const Game: React.FC = () => {
   const [pokemonNo, setPokemonNo] = useState<number>(0)
   const [pokemonImageClass, setPokemonImageClass] = useState<string>('black-pokemon-img')
 
+  const [gameStarted, setGameStarted] = useState<boolean>(false)
+
   const router = useRouter()
 
   useEffect(() => {
+    if (gameStarted) {
     // Start the timer
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1)
@@ -60,8 +63,9 @@ const Game: React.FC = () => {
       clearInterval(timer)
       clearInterval(intervalId)
       clearTimeout(revealImageTimer)
+      }
     }
-  }, [])
+  }, [gameStarted])
   console.log(timeLeft)
   if (timeLeft == 0) {
     router.push(`/failed`)
@@ -85,17 +89,42 @@ const Game: React.FC = () => {
   return (
     <>
       <div className='container flex py-[150px]'>
-        <div className='timer'>Time Left: {timeLeft} seconds</div>
-        <div className='clue'>{revealedLetters}</div>
-        <div className='image-container'>
-          <img src={pokemonUrl} alt='Pokemon' className={pokemonImageClass} />
-        </div>
-        <form onSubmit={handleGuess} className='guess-form'>
-          <input type='text' name='guess' required className='guess-input' />
-          <button type='submit' className='submit-button'>
-            Submit Guess
-          </button>
-        </form>
+        {
+          !gameStarted && (
+            <button
+              onClick={() => setGameStarted(true)}
+              className='start-button'
+              style={{
+                padding: '10px 20px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+                transition: 'transform 0.3s ease-in-out',
+              }}
+              >
+                Start
+              </button>
+          )
+        }
+        {gameStarted && (
+          <>
+            <div className='timer'>Time Left: {timeLeft} seconds</div>
+            <div className='clue'>{revealedLetters}</div>
+            <div className='image-container'>
+            <img src={pokemonUrl} alt='Pokemon' className={pokemonImageClass} />
+          </div>
+          <form onSubmit={handleGuess} className='guess-form'>
+            <input type='text' name='guess' required className='guess-input' />
+            <button type='submit' className='submit-button'>
+              Submit Guess
+            </button>
+          </form>
+        </>
+        )}
+       
       </div>
     </>
   )
