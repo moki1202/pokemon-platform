@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import { selectPokemonData } from '../store/features/pokemon-list/pokemonSlice'
 import { useDispatch } from 'react-redux'
 import { updatePoints } from '../store/features/points-game2/pointsgame2slice'
+import { useDispatch } from 'react-redux'
+import { updatePoints } from '../store/features/points-game2/pointsgame2slice'
 
 const Game: React.FC = () => {
   const pokemonData = useSelector(selectPokemonData)
@@ -15,7 +17,13 @@ const Game: React.FC = () => {
     Array(pokemonName.length).fill('')
   )
   const [revealedIndices, setRevealedIndices] = useState(new Set())
+  const [revealedLetters, setRevealedLetters] = useState<Array<string>>(
+    Array(pokemonName.length).fill('')
+  )
+  const [revealedIndices, setRevealedIndices] = useState(new Set())
   const [pokemonNo, setPokemonNo] = useState<number>(0)
+  const [pokemonImageClass, setPokemonImageClass] =
+    useState<string>('black-pokemon-img')
   const [pokemonImageClass, setPokemonImageClass] =
     useState<string>('black-pokemon-img')
 
@@ -24,6 +32,7 @@ const Game: React.FC = () => {
 
   const router = useRouter()
   const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (gameStarted) {
@@ -31,7 +40,13 @@ const Game: React.FC = () => {
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1)
       }, 1000)
+      // Start the timer
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1)
+      }, 1000)
 
+      const randomIndex = Math.floor(Math.random() * 151) + 1
+      setPokemonNo(randomIndex)
       const randomIndex = Math.floor(Math.random() * 151) + 1
       setPokemonNo(randomIndex)
 
@@ -41,12 +56,13 @@ const Game: React.FC = () => {
         (item: { url: string }) => item.url === url
       )
       const pokemonName = filteredData[0]?.name.toLowerCase()
-      // const pokemonName = 'bulbasaur'
+      // setPokemonName('bulbasaur')
       setPokemonName(pokemonName)
 
       // Set up intervals to gradually reveal letters
       const nameLength = pokemonName.length
       const interval = Math.ceil(60 / nameLength)
+      let revealedLength = 0
       const intervalId = setInterval(() => {
         if (revealedIndices.size < nameLength) {
           let nextIndex: number
@@ -68,6 +84,10 @@ const Game: React.FC = () => {
         setPokemonImageClass('pokemon-img')
       }, 10000)
 
+      return () => {
+        clearInterval(timer)
+        clearInterval(intervalId)
+        clearTimeout(revealImageTimer)
       return () => {
         clearInterval(timer)
         clearInterval(intervalId)
@@ -146,7 +166,17 @@ const Game: React.FC = () => {
         {!gameStarted && (
           <button
             onClick={() => setGameStarted(true)}
-            className='button-color p-3 w-[100px] rounded-full font-bold text-white relative mt-[150px]'
+            className='start-button'
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+              transition: 'transform 0.3s ease-in-out',
+            }}
           >
             Start
           </button>
