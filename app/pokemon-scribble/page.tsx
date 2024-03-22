@@ -9,10 +9,10 @@ const Game: React.FC = () => {
 
   const [timeLeft, setTimeLeft] = useState(60)
   const [pokemonName, setPokemonName] = useState('')
-  const [revealedLetters, setRevealedLetters] = useState('')
+  const [revealedLetters, setRevealedLetters] = useState<Array<string>>(Array(pokemonName.length).fill(''));
+  const [revealedIndices, setRevealedIndices] = useState(new Set());
   const [pokemonNo, setPokemonNo] = useState<number>(0)
-  const [pokemonImageClass, setPokemonImageClass] =
-    useState<string>('black-pokemon-img')
+  const [pokemonImageClass, setPokemonImageClass] = useState<string>('black-pokemon-img')
 
   const router = useRouter()
 
@@ -25,7 +25,7 @@ const Game: React.FC = () => {
     const randomIndex = Math.floor(Math.random() * 151) + 1
     setPokemonNo(randomIndex)
 
-    // Select a random Pokémon name (replace with your logic)
+    // Select a random Pokémon name
     const url: string = `https://pokeapi.co/api/v2/pokemon/${randomIndex}/`
     const filteredData = (pokemonData as any[]).filter(
       (item: { url: string }) => item.url === url
@@ -38,11 +38,20 @@ const Game: React.FC = () => {
     const interval = Math.ceil(60 / nameLength)
     let revealedLength = 0
     const intervalId = setInterval(() => {
-      if (revealedLength < nameLength) {
-        setRevealedLetters(pokemonName.slice(0, revealedLength))
-        revealedLength++
+      if (revealedIndices.size < nameLength) {
+        let nextIndex: number;
+        do {
+          nextIndex = Math.floor(Math.random() * pokemonName.length);
+        } while (revealedIndices.has(nextIndex));
+        
+        setRevealedIndices(prevIndices => new Set(prevIndices.add(nextIndex)));
+        setRevealedLetters(prevLetters => {
+          const updatedLetters = [...prevLetters];
+          updatedLetters[nextIndex] = pokemonName[nextIndex];
+          return updatedLetters;
+        });
       }
-    }, interval * 1000)
+    }, interval * 1000);
     const revealImageTimer = setTimeout(() => {
       setPokemonImageClass('pokemon-img')
     }, 10000)
