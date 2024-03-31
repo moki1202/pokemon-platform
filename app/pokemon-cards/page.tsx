@@ -1,5 +1,5 @@
 'use client'
-import Card, { Pokemon } from '@/components/pokemoncard'
+import Card from '@/components/pokemoncard'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectPokemonData } from '../store/features/pokemon-list/pokemonSlice'
