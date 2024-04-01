@@ -24,18 +24,18 @@ const SearchBar = () => {
     }
   }
   return (
-    <div className='flex items-center bg-white rounded-full p-1 text-black'>
+    <div className='flex items-center bg-white bg-opacity-30 rounded-full p-1 text-white'>
       <input
         type='text'
         placeholder='Search...'
-        className='flex-grow outline-none px-2 py-1 rounded-full'
+        className='flex-grow outline-none px-2 py-1 rounded-full bg-transparent'
         value={search}
         onChange={handleSearchChange}
         onKeyDown={handleKeyPress}
       />
       <button
         onClick={handleSearch}
-        className='bg-red-500 text-white px-4 py-1 rounded-full ml-2'
+        className='button-color text-white px-4 py-1 rounded-full ml-2'
       >
         Search
       </button>

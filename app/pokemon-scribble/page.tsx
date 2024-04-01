@@ -146,17 +146,7 @@ const Game: React.FC = () => {
         {!gameStarted && (
           <button
             onClick={() => setGameStarted(true)}
-            className='start-button'
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-              transition: 'transform 0.3s ease-in-out',
-            }}
+            className='button-color p-3 w-[100px] rounded-full font-bold text-white relative mt-[150px]'
           >
             Start
           </button>
@@ -177,10 +167,13 @@ const Game: React.FC = () => {
                 type='text'
                 name='guess'
                 required
-                className='guess-input'
+                className='guess-input bg-gray-700 rounded-full h-[35px] p-4'
               />
-              <button type='submit' className='submit-button'>
-                Submit Guess
+              <button
+                type='submit'
+                className='submit-button button-color rounded-full'
+              >
+                Submit
               </button>
             </form>
           </>

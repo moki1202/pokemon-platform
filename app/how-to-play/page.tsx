@@ -4,6 +4,7 @@ import PokemonFusion from '@/components/pokemon-fusion'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectPokemonData } from '../store/features/pokemon-list/pokemonSlice'
+import { totalPokemon } from '@/constants/totalPokemon'
 
 const HowToPlay: React.FC = () => {
   const pokemonData = useSelector(selectPokemonData)
@@ -34,7 +35,7 @@ const HowToPlay: React.FC = () => {
   }
 
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * 151) + 1
+    const randomIndex = Math.floor(Math.random() * totalPokemon) + 1
     setPokemonNo(randomIndex)
   }, [])
 
@@ -64,7 +65,7 @@ const HowToPlay: React.FC = () => {
             <input
               type='text'
               placeholder='Write Answer'
-              className='flex-grow px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500'
+              className='flex-grow px-4 py-2 rounded-full text-white bg-gray-500 write-answer'
               value={playerInput}
               onChange={handleSearchChange}
               onKeyDown={handleKeyPress}

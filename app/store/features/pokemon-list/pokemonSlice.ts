@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 import axios from 'axios' // Import Axios for making HTTP requests
+import { totalPokemon } from '@/constants/totalPokemon'
 
 interface PokemonState {
   data: any[] | string
@@ -20,7 +21,7 @@ export const fetchPokemonData = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
+        `https://pokeapi.co/api/v2/pokemon?limit=${totalPokemon}&offset=0`
       )
       return response.data.results
     } catch (err) {

@@ -20,9 +20,9 @@ const SearchResult = () => {
   return (
     <div className='container py-8 absolute mt-[70px] overflow-y-auto'>
       <h1 className='text-2xl font-bold mb-4 flex'>Pokemon List</h1>
-      <div className='flex flex-wrap justify-center'>
+      <div className='flex flex-wrap justify-center items-center'>
         {(filteredPokemon as any[]).map((pokemon, index) => (
-          <div key={pokemon.name} className='w-1/5 p-4'>
+          <div key={pokemon.name} className='p-4'>
             <Card key={index} {...pokemon} />
           </div>
         ))}

@@ -42,7 +42,7 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({ pokemon }) => {
       <div className='flex-col justify-end mt-[50px]'>
         <button
           onClick={handleClick}
-          className='border border-gray-500 hover:border-gray-700 px-4 py-2 rounded-lg text-gray-700 hover:text-gray-900 '
+          className='button-color px-4 py-2 rounded-lg text-white-700 hover:text-gray-900 hover:shadow-xl '
         >
           {buttonText}
         </button>
