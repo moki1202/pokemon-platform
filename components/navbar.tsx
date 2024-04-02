@@ -28,25 +28,34 @@ export const Navbar = () => {
   }
   return (
     <nav>
-      <div className='navbar py-4 px-2 flex w-full justify-between items-center text-white fixed bg-opacity-100 z-50'>
-        <Link href='/' className='flex-grow ml-4 hover-glow'>
-          Home
-        </Link>
-        <div className='flex-grow mr-20'>
+      <div className='navbar py-4 px-2 flex w-full justify-between items-center text-white fixed bg-opacity-100 z-50 gap-4'>
+        <div className='flex ml-4 justify-center items-center'>
+          <Link href='/' className='flex-grow ml-4 hover-glow'>
+            <img
+              src='/assets/logo/pikachu_icon.svg'
+              className='px-2 h-[4rem] w-[4rem]'
+            />
+          </Link>
+        </div>
+        <div className='flex-grow relative ml-[3rem] mr-[2rem]'>
           <SearchBar />
         </div>
-        <div className='relative flex-grow'>
+        <div className='relative flex-grow ml-[2rem]'>
           <button onClick={handleGameClick} className='flex-grow'>
-            Games
+            {showDropdown ? <>&#9660;</> : <>&#9650;</>} Games
           </button>
           {showDropdown && (
             <DropdownMenu options={gameOptions} onSelect={handleGameSelect} />
           )}
         </div>
-        <Link href='/pokemon-cards' className='flex-grow'>
-          PokeDoc
-        </Link>
-        <Link href='/pokemon-scribble' className='flex-grow'>
+        <div className='flex justify-center items-center ml-[-4rem] z-10'>
+          <Link href='/pokemon-cards'>PokeDex </Link>
+          <img src='/assets/logo/pokemon-icon.png' className='px-2 ' />
+        </div>
+        <Link
+          href='/pokemon-scribble'
+          className='flex-grow mr-[-3rem] ml-[3rem]'
+        >
           leaderboard
         </Link>
         <div className='flex mr-4 justify-center items-center'>
@@ -56,11 +65,11 @@ export const Navbar = () => {
           >
             GitHub
           </Link>
-          <img src='/assets/logo/github.svg' className='px-2 white-icon' />
+          <img src='/assets/logo/github.svg' className='px-2 ' />
         </div>
         <button
           onClick={handleSearch}
-          className='button-color text-white px-4 py-1 rounded-full ml-2'
+          className='button-color text-white px-4 py-1 rounded-full mr-[2rem]'
         >
           Login
         </button>

@@ -12,7 +12,7 @@
   color: rgb(157, 156, 156);
 }
 body {
-  background-color: #1e1e1e;
+  background-color: #2e2c2c;
   color: #ffffff;
   font-family: sans-serif;
 }
@@ -23,6 +23,7 @@ body {
   background-position: center;
   height: 100vh;
   width: 100vw;
+  background-repeat: repeat-x;
 }
 
 .main-2 {
@@ -30,9 +31,10 @@ body {
 }
 
 .navbar {
-  background: transparent;
+  background: black;
   font-family: sans-serif;
   font-size: 1.1rem;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .pokemon-card-container {
@@ -138,10 +140,10 @@ body {
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 10px rgba(119, 0, 240, 0); /* Start with no shadow */
+    box-shadow: 0 0 10px rgba(253, 197, 0, 0); /* Start with no shadow */
   }
   to {
-    box-shadow: 0 0 20px rgba(240, 6, 233, 0.7); /* End with intensified shadow */
+    box-shadow: 0 0 20px rgba(253, 197, 0, 0.7); /* End with intensified shadow */
   }
 }
 

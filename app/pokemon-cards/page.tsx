@@ -1,5 +1,5 @@
 'use client'
-import Card, { Pokemon } from '@/components/pokemoncard'
+import Card from '@/components/pokemoncard'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectPokemonData } from '../store/features/pokemon-list/pokemonSlice'
@@ -40,7 +40,6 @@ const PokemonPage = () => {
 
   return (
     <div className='container py-8 absolute mt-[70px] overflow-y-auto'>
-      <h1 className='text-2xl font-bold mb-4 flex'>Pokemon List</h1>
       <div className='flex flex-wrap justify-center'>
         {(slicedData as any[]).map((pokemon, index) => (
           <div key={pokemon.name} className='w-1/4 p-4'>

@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react'
 
 interface PokemonFusionProps {
   pokemon: string
+  totalCount: (newCount: number) => void
 }
 
-const PokemonFusion: React.FC<PokemonFusionProps> = ({ pokemon }) => {
+const PokemonFusion: React.FC<PokemonFusionProps> = ({
+  pokemon,
+  totalCount,
+}) => {
   const [svgParts, setSvgParts] = useState<string[]>([])
-  const [count, setCount] = useState<number>(0)
-  const [buttonText, setButtonText] = useState<string>(`Let's Play`)
+  const [count, setCount] = useState<number>(1)
 
   useEffect(() => {
     const fetchPokemonSVG = async () => {
@@ -16,8 +19,8 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({ pokemon }) => {
       const svgText = await response.text()
 
       // Split the SVG into ten parts 10 point system
-      const partSize = svgText.length / 8
-      const parts = Array.from({ length: 8 }, (_, index) =>
+      const partSize = svgText.length / 6
+      const parts = Array.from({ length: 6 }, (_, index) =>
         svgText.slice(index * partSize, (index + count) * partSize)
       )
 
@@ -27,9 +30,12 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({ pokemon }) => {
   }, [pokemon, count])
 
   const handleClick = () => {
-    setButtonText(`Next Hint`)
-    if (count < 8) {
-      setCount((prevCount) => prevCount + 1)
+    if (count < 6) {
+      setCount((prevCount) => {
+        const newCount = prevCount + 1
+        totalCount(newCount)
+        return newCount
+      })
     }
   }
   return (
@@ -42,9 +48,9 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({ pokemon }) => {
       <div className='flex-col justify-end mt-[50px]'>
         <button
           onClick={handleClick}
-          className='button-color px-4 py-2 rounded-lg text-white-700 hover:text-gray-900 hover:shadow-xl '
+          className='button-color px-4 py-2 rounded-full text-white font-bold w-[130px] '
         >
-          {buttonText}
+          Next Hint
         </button>
       </div>
     </>

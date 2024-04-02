@@ -15,7 +15,11 @@ const CongratulationsPage: React.FC = () => {
   console.log(points)
 
   const handleClick = () => {
-    router.push('/pokemon-scribble')
+    if (object.gameType == 2) {
+      router.push('/pokemon-scribble')
+    } else if (object.gameType == 1) {
+      router.push('/how-to-play')
+    }
   }
 
   return (

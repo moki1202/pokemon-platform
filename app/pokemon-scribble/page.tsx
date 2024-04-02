@@ -85,6 +85,7 @@ const Game: React.FC = () => {
           points: calculatedpoints,
           correctPokemonNumber: pokemonName,
           imageUrl: pokemonUrl,
+          gameType: 2,
         })
       )
     } else {
@@ -93,6 +94,7 @@ const Game: React.FC = () => {
           points: 0,
           correctPokemonNumber: pokemonName,
           imageUrl: pokemonUrl,
+          gameType: 2,
         })
       )
     }
@@ -101,6 +103,11 @@ const Game: React.FC = () => {
   const pokemonUrl: string = `/assets/images/svg/${pokemonNo}.svg`
   // const pokemonUrl: string = `/assets/images/svg/1.svg`
 
+  //if time left is zero than redirect to fail page
+  if (timeLeft <= 0) {
+    router.push(`/extra-pages/failed`)
+  }
+
   const handleGuess = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const inputElement = event.currentTarget.elements.namedItem(
@@ -108,9 +115,7 @@ const Game: React.FC = () => {
     ) as HTMLInputElement
     const guess = inputElement.value.toLowerCase()
 
-    if (timeLeft === 0) {
-      router.push(`/failed`)
-    } else if (guess === pokemonName.toLowerCase()) {
+    if (guess === pokemonName.toLowerCase()) {
       setGuessedAns(true)
       router.push(`/extra-pages/congratulations`)
     } else {
@@ -132,7 +137,7 @@ const Game: React.FC = () => {
     pointsMap.set(50, 6)
     let points = 1
 
-    pointsMap.forEach((value, key) => {
+    pointsMap.forEach((key, value) => {
       if (leftTime >= key) {
         points = value
       }
@@ -142,7 +147,7 @@ const Game: React.FC = () => {
 
   return (
     <>
-      <div className='container flex py-[150px]'>
+      <div className='container flex py-[150px] justify-center items-center'>
         {!gameStarted && (
           <button
             onClick={() => setGameStarted(true)}
