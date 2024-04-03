@@ -24,13 +24,12 @@ const CongratulationsPage: React.FC = () => {
 
   return (
     <>
-      <div className='congratulations-container py-[50px]'>
+      <div className='congratulations-container py-[8rem]'>
         <div className='congratulations-text'>
           <h2>Congratulations!</h2>
           <p>You've won {points} points!</p>
         </div>
         <div>
-          Assuming correctPokemon contains details of the correct Pokémon card
           <Card image={url} name={correctPokemonName} />
         </div>
         <div>

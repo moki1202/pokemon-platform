@@ -24,43 +24,44 @@ const HowToPlay: React.FC = () => {
     setPlayerInput(event.target.value)
   }
   const handleSearch = () => {
-    if (pokemonName === playerInput) {
+    if (pokemonName.toLowerCase() == playerInput.toLowerCase()) {
       setIsGuessCorrect(true)
-      console.log(`Congratulations you win`)
     } else {
       setIsGuessCorrect(false)
-      console.log(`Try Again`)
     }
   }
   const pokemonUrl: string = `/assets/images/svg/${pokemonNo}.svg`
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch()
-      if (isGuessCorrect) {
-        // Calculate points only when guessedAns updates
-        const calculatedpoints: number = expectedPoints(count)
-        dispatch(
-          updatePoints({
-            points: calculatedpoints,
-            correctPokemonNumber: pokemonName,
-            imageUrl: pokemonUrl,
-            gameType: 1,
-          })
-        )
-        router.push('/extra-pages/congratulations')
-      } else {
-        dispatch(
-          updatePoints({
-            points: 0,
-            correctPokemonNumber: pokemonName,
-            imageUrl: pokemonUrl,
-            gameType: 1,
-          })
-        )
-        router.push('/extra-pages/failed')
-      }
     }
   }
+
+  useEffect(() => {
+    if (isGuessCorrect) {
+      // Calculate points only when guessedAns updates
+      const calculatedpoints: number = expectedPoints(count)
+      dispatch(
+        updatePoints({
+          points: calculatedpoints,
+          correctPokemonNumber: pokemonName,
+          imageUrl: pokemonUrl,
+          gameType: 1,
+        })
+      )
+      router.push('/extra-pages/congratulations')
+    } else if (isGuessCorrect != null) {
+      dispatch(
+        updatePoints({
+          points: 0,
+          correctPokemonNumber: pokemonName,
+          imageUrl: pokemonUrl,
+          gameType: 1,
+        })
+      )
+      router.push('/extra-pages/failed')
+    }
+  }, [isGuessCorrect])
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * totalPokemon) + 1
@@ -72,7 +73,6 @@ const HowToPlay: React.FC = () => {
     const pokemonName = filteredData[0]?.name.toLowerCase()
     setPokemonName(pokemonName)
   }, [])
-
   const shuffleArray = (array: string[]) => {
     const shuffledArray = [...array]
     for (let i = shuffledArray.length - 1; i > 0; i--) {
