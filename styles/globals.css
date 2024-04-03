@@ -62,8 +62,6 @@ body {
 
 .fusion-overlay {
   top: 2rem;
-  width: 30rem;
-  height: 25rem;
 }
 
 .fusion-container {
@@ -136,6 +134,15 @@ body {
 .button-color {
   background-color: #fdc500;
   transition: box-shadow 0.3s ease;
+  opacity: 90%;
+}
+
+.dropdown-items {
+  background-color: rgba(253, 197, 0, 0.75);
+}
+.dropdown-items:hover {
+  background-color: rgba(253, 197, 0, 1);
+  animation: glow 1s infinite alternate;
 }
 
 @keyframes glow {
@@ -149,6 +156,7 @@ body {
 
 .button-color:hover {
   animation: glow 1s infinite alternate;
+  opacity: 100%;
 }
 
 /* CSS Animation for Celebration */

@@ -34,7 +34,12 @@ const CongratulationsPage: React.FC = () => {
           <Card image={url} name={correctPokemonName} />
         </div>
         <div>
-          <button onClick={handleClick}>Play Again</button>
+          <button
+            onClick={handleClick}
+            className='button-color rounded-full w-[8rem] h-[3rem] font-bold'
+          >
+            &#8634; Play Again
+          </button>
         </div>
       </div>
     </>

@@ -40,18 +40,20 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({
   }
   return (
     <>
-      <div className='relative top-[2rem] py-3 w-max-[100px] h-max-[100px]'>
-        {svgParts.slice(0, 1).map((part, index) => (
-          <div key={index} dangerouslySetInnerHTML={{ __html: part }} />
-        ))}
-      </div>
-      <div className='flex-col justify-end mt-[50px]'>
-        <button
-          onClick={handleClick}
-          className='button-color px-4 py-2 rounded-full text-white font-bold w-[130px] '
-        >
-          Next Hint
-        </button>
+      <div className='flex-col'>
+        <div className=' flex ml-[5rem]'>
+          {svgParts.slice(0, 1).map((part, index) => (
+            <div key={index} dangerouslySetInnerHTML={{ __html: part }} />
+          ))}
+        </div>
+        <div className='flex justify-end mt-[13rem] ml-[5rem]'>
+          <button
+            onClick={handleClick}
+            className='button-color px-4 py-2 rounded-full text-white font-bold w-[130px] mb-[5rem]'
+          >
+            Next Hint
+          </button>
+        </div>
       </div>
     </>
   )

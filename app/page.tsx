@@ -10,10 +10,10 @@ export default function Home() {
   const dispatch: AppDispatch = useDispatch()
   const pokemonData = useSelector(selectPokemonData)
   useEffect(() => {
-    if (!pokemonData) {
+    if (pokemonData.length == 0) {
       dispatch(fetchPokemonData())
     }
-  }, [dispatch, pokemonData])
+  }, [dispatch])
   return (
     <>
       <div className='h-screen main-2'>

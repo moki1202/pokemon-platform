@@ -117,18 +117,15 @@ const HowToPlay: React.FC = () => {
     <>
       <div className='w-screen h-screen flex items-center justify-center'>
         {play ? (
-          <div className='fusion-overlay flex items-center justify-center px-2 flex-wrap py-4 relative'>
-            <div className='z-10'>
-              {' '}
-              Potential Points: {pointsMap.get(count)}
-            </div>
-            <div className='fusion-container flex-col justify-center items-center'>
+          <div className='fusion-overlay flex items-center justify-center px-2 flex-wrap py-4'>
+            <div className='z-10'>Potential Points: {pointsMap.get(count)}</div>
+            <div className='fusion-container flex justify-center items-center mt-[10rem]'>
               <PokemonFusion
                 pokemon={pokemonUrl}
                 totalCount={handleCountChange}
               />
             </div>
-            <div className='flex mt-[10rem] items-center justify-center ml-[7rem]'>
+            <div className='flex items-center justify-center ml-[12rem] w-[15rem]'>
               <input
                 type='text'
                 placeholder='Write Answer'

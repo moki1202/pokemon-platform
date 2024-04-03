@@ -137,7 +137,7 @@ const Game: React.FC = () => {
     pointsMap.set(50, 6)
     let points = 1
 
-    pointsMap.forEach((key, value) => {
+    pointsMap.forEach((value, key) => {
       if (leftTime >= key) {
         points = value
       }
