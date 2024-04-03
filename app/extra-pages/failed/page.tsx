@@ -12,7 +12,6 @@ const CongratulationsPage: React.FC = () => {
   const points = object?.points
   const correctPokemonName = object?.correctPokemonNumber
   const url = object.imageUrl
-  console.log(points)
 
   const handleClick = () => {
     if (object.gameType == 2) {

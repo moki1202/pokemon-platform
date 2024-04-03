@@ -46,7 +46,7 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({
             <div key={index} dangerouslySetInnerHTML={{ __html: part }} />
           ))}
         </div>
-        <div className='flex justify-center ml-[4rem] mt-[6rem]'>
+        <div className='flex justify-end mt-[13rem] ml-[5rem]'>
           <button
             onClick={handleClick}
             className='button-color px-4 py-2 rounded-full text-white font-bold w-[130px] mb-[5rem]'

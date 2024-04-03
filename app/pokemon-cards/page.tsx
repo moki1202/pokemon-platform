@@ -36,7 +36,6 @@ const PokemonPage = () => {
   )
 
   const totalPages = Math.ceil(updatedPokemonData.length / ITEMS_PER_PAGE)
-  console.log(slicedData)
 
   return (
     <div className='container py-8 absolute mt-[70px] overflow-y-auto'>

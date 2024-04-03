@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 
 const Signup: React.FC = () => {
-  console.log('hello there')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 

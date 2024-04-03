@@ -12,7 +12,7 @@ const Game: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(60)
   const [pokemonName, setPokemonName] = useState('')
   const [revealedLetters, setRevealedLetters] = useState<Array<string>>(
-    Array(pokemonName.length).fill('')
+    Array(pokemonName.length).fill('_')
   )
   const [revealedIndices, setRevealedIndices] = useState(new Set())
   const [pokemonNo, setPokemonNo] = useState<number>(0)
@@ -43,6 +43,8 @@ const Game: React.FC = () => {
       const pokemonName = filteredData[0]?.name.toLowerCase()
       // const pokemonName = 'bulbasaur'
       setPokemonName(pokemonName)
+      
+      setRevealedLetters(Array(pokemonName.length).fill('_'));
 
       // Set up intervals to gradually reveal letters
       const nameLength = pokemonName.length
@@ -99,6 +101,8 @@ const Game: React.FC = () => {
       )
     }
   }, [guessedAns])
+  // Set pokemonRevealed here
+  
 
   const pokemonUrl: string = `/assets/images/svg/${pokemonNo}.svg`
   // const pokemonUrl: string = `/assets/images/svg/1.svg`
@@ -134,7 +138,7 @@ const Game: React.FC = () => {
     pointsMap.set(20, 3)
     pointsMap.set(30, 4)
     pointsMap.set(40, 5)
-    pointsMap.set(50, 6)
+    pointsMap.set(50, 8)
     let points = 1
 
     pointsMap.forEach((value, key) => {
@@ -159,7 +163,7 @@ const Game: React.FC = () => {
         {gameStarted && (
           <>
             <div className='timer'>Time Left: {timeLeft} seconds</div>
-            <div className='clue'>{revealedLetters}</div>
+            <div className='clue'>{revealedLetters.join(' ')}</div>
             <div className='image-container'>
               <img
                 src={pokemonUrl}

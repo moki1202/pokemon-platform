@@ -5,7 +5,7 @@ import axios from 'axios' // Import Axios for making HTTP requests
 import { totalPokemon } from '@/constants/totalPokemon'
 
 interface PokemonState {
-  data: any[] | string
+  data: any[]
   loading: boolean
   error: string | null
 }
