@@ -266,18 +266,3 @@ body {
 .flex-between {
   @apply flex justify-between items-center;
 }
-
-
-.center-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px; /* Adjust width as needed */
-}
