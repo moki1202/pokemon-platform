@@ -24,7 +24,7 @@ export const Navbar = () => {
     { label: 'Game 2', route: '/pokemon-scribble' },
   ]
   const handleSearch = () => {
-    router.push('auth/login')
+    router.push('/auth/login')
   }
   return (
     <nav>

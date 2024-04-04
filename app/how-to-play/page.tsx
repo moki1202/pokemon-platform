@@ -149,7 +149,7 @@ const HowToPlay: React.FC = () => {
         {play ? (
           <div className='fusion-overlay flex items-center justify-center px-2 flex-wrap py-4'>
             <div className='z-10'>Potential Points: {pointsMap.get(count)}</div>
-            <div className='fusion-container flex justify-center items-center mt-[3rem]'>
+            <div className='fusion-container flex justify-center items-center mt-[5rem]'>
               <PokemonFusion
                 pokemon={pokemonUrl}
                 totalCount={handleCountChange}

@@ -43,8 +43,8 @@ const Game: React.FC = () => {
       const pokemonName = filteredData[0]?.name.toLowerCase()
       // const pokemonName = 'bulbasaur'
       setPokemonName(pokemonName)
-      
-      setRevealedLetters(Array(pokemonName.length).fill('_'));
+
+      setRevealedLetters(Array(pokemonName.length).fill('_'))
 
       // Set up intervals to gradually reveal letters
       const nameLength = pokemonName.length
@@ -102,7 +102,6 @@ const Game: React.FC = () => {
     }
   }, [guessedAns])
   // Set pokemonRevealed here
-  
 
   const pokemonUrl: string = `/assets/images/svg/${pokemonNo}.svg`
   // const pokemonUrl: string = `/assets/images/svg/1.svg`
@@ -151,7 +150,7 @@ const Game: React.FC = () => {
 
   return (
     <>
-      <div className='container flex py-[150px] justify-center items-center'>
+      <div className='container flex py-[10rem] justify-center items-center'>
         {!gameStarted && (
           <button
             onClick={() => setGameStarted(true)}
@@ -163,7 +162,7 @@ const Game: React.FC = () => {
         {gameStarted && (
           <>
             <div className='timer'>Time Left: {timeLeft} seconds</div>
-            <div className='clue'>{revealedLetters.join(' ')}</div>
+            <div className='clue mb-[4rem]'>{revealedLetters.join(' ')}</div>
             <div className='image-container'>
               <img
                 src={pokemonUrl}
