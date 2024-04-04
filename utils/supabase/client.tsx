@@ -1,3 +1,4 @@
+// To access Supabase from Client Components
 import { createBrowserClient } from '@supabase/ssr'
 
 export function createClient() {

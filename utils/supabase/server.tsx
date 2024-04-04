@@ -1,3 +1,4 @@
+// To access Supabase from Server Components, Server Actions, and Route Handlers, which run only on the server.
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 

@@ -9,6 +9,8 @@ export default function LoginPage() {
         <div className="flex justify-center mb-6 mt-2"><SupabaseLogo/></div>
         
         <form className='flex flex-col gap-2'>
+          <Label htmlFor="username">Username:</Label>
+          <Input id="username" name="username" type="username" required />
           <Label htmlFor="email">Email:</Label>
           <Input id="email" name="email" type="email" required />
           <Label htmlFor="password">Password:</Label>
