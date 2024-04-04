@@ -14,18 +14,19 @@ const HowToPlay: React.FC = () => {
   const pokemonData = useSelector(selectPokemonData)
 
   const [pokemonNo, setPokemonNo] = useState<number>(1)
-  const [playerInput, setPlayerInput] = useState<string>('')
   const [play, setPlay] = useState<boolean>(false)
   const [count, setCount] = useState<number>(1)
   const [isGuessCorrect, setIsGuessCorrect] = useState<boolean | null>(null)
   const [pokemonName, setPokemonName] = useState<string>('')
   const [hints, setHints] = useState<string[]>([])
+  const [selectedHint, setSelectedHint] = useState<string>('')
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerInput(event.target.value)
+  const handleHintSelect = (hint: string) => {
+    setSelectedHint(hint)
   }
+
   const handleSearch = () => {
-    if (pokemonName.toLowerCase() == playerInput.toLowerCase()) {
+    if (pokemonName.toLowerCase() == selectedHint.toLowerCase()) {
       setIsGuessCorrect(true)
     } else {
       setIsGuessCorrect(false)
@@ -38,6 +39,11 @@ const HowToPlay: React.FC = () => {
     }
   }
 
+  console.log(
+    selectedHint,
+    pokemonName,
+    'this is the selected hint and pokemonName'
+  )
   useEffect(() => {
     if (isGuessCorrect) {
       // Calculate points only when guessedAns updates
@@ -155,22 +161,31 @@ const HowToPlay: React.FC = () => {
                 totalCount={handleCountChange}
               />
             </div>
-            <div className='flex items-center justify-center ml-[12rem] w-[15rem]'>
-              <input
-                type='text'
-                placeholder='Write Answer'
-                className='flex-grow px-4 py-2 rounded-full text-white bg-gray-500 write-answer'
-                value={playerInput}
-                onChange={handleSearchChange}
-                onKeyDown={handleKeyPress}
-              />
-            </div>
-            <div className='flex'>
-              {hints.map((hint, index) => (
-                <div key={index} className='p-6'>
-                  {hint}
-                </div>
-              ))}
+            <div className='flex-col flex-between'>
+              <div className='flex'>
+                {hints.map((hint, index) => (
+                  <div key={index} className='p-6 space-x-2'>
+                    <input
+                      type='radio'
+                      id={hint}
+                      name='hints'
+                      value={hint}
+                      checked={selectedHint === hint}
+                      onChange={() => handleHintSelect(hint)}
+                      className='radio-button h-6 w-6 rounded'
+                    />
+                    <label htmlFor={hint} className='text-xl'>
+                      {hint.toUpperCase()}
+                    </label>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={handleSearch}
+                className='text-center button-color font-bold py-2 px-4 rounded-full w-[8rem] '
+              >
+                Submit
+              </button>
             </div>
           </div>
         ) : (

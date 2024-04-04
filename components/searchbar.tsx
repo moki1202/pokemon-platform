@@ -27,7 +27,7 @@ const SearchBar = () => {
     <div className='flex items-center bg-white bg-opacity-30 rounded-full p-1 text-white'>
       <input
         type='text'
-        placeholder='Search...'
+        placeholder='Search Your Favourite Pokemon ...'
         className='flex-grow outline-none px-2 py-1 rounded-full bg-transparent'
         value={search}
         onChange={handleSearchChange}

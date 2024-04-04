@@ -169,6 +169,29 @@ body {
   }
 }
 
+.radio-button {
+  accent-color: #fdc500;
+}
+
+/* lazy loader */
+.lazy-loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #fdc500;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  } /* Starting point */
+  100% {
+    transform: rotate(360deg);
+  } /* Full rotation */
+}
+
 /* Tailwind Styles */
 
 .app {

@@ -40,13 +40,13 @@ const PokemonFusion: React.FC<PokemonFusionProps> = ({
   }
   return (
     <>
-      <div className='flex-col'>
+      <div className='flex'>
         <div className=' flex ml-[5rem]'>
           {svgParts.slice(0, 1).map((part, index) => (
             <div key={index} dangerouslySetInnerHTML={{ __html: part }} />
           ))}
         </div>
-        <div className='flex justify-end mt-[10rem] ml-[5rem]'>
+        <div className='flex justify-end items-center mt-[5rem] ml-[3rem] '>
           <button
             onClick={handleClick}
             className='button-color px-4 py-2 rounded-full text-white font-bold w-[130px] mb-[5rem]'

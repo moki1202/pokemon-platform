@@ -20,8 +20,8 @@ export const Navbar = () => {
   }
 
   const gameOptions: Option[] = [
-    { label: 'Game 1', route: '/how-to-play' },
-    { label: 'Game 2', route: '/pokemon-scribble' },
+    { label: 'Guess The Pokemon', route: '/how-to-play' },
+    { label: 'Pokemon Scribble', route: '/pokemon-scribble' },
   ]
   const handleSearch = () => {
     router.push('/auth/login')
