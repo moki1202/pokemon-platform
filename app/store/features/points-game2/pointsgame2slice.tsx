@@ -7,7 +7,7 @@ interface PointsState {
   points: number
   correctPokemonNumber: string
   imageUrl: string
-  gameType: number
+  gameType: string
 }
 
 // Define the initial state
@@ -15,7 +15,7 @@ const initialState: PointsState = {
   points: 0,
   correctPokemonNumber: '',
   imageUrl: '',
-  gameType: 0,
+  gameType: '',
 }
 
 // Create a slice for points
@@ -30,7 +30,7 @@ const pointsSlice = createSlice({
         points: number
         correctPokemonNumber: string
         imageUrl: string
-        gameType: number
+        gameType: string
       }>
     ) {
       state.points = action.payload.points
@@ -43,7 +43,7 @@ const pointsSlice = createSlice({
       state.points = 0
       state.correctPokemonNumber = ''
       state.imageUrl = ''
-      state.gameType = 0
+      state.gameType = ''
     },
   },
 })

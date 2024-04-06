@@ -4,17 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them!
-*/
-
 .write-answer::placeholder {
   color: rgb(157, 156, 156);
 }
 body {
   background-color: #2e2c2c;
   color: #ffffff;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .main {

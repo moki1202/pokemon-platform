@@ -5,10 +5,31 @@ import { useRouter } from 'next/navigation'
 import { Option } from './dropdown'
 import { useState } from 'react'
 import DropdownMenu from './dropdown'
+import { selectUsername } from '@/app/store/features/userinfo/usernameslice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectSignupSuccess } from '@/app/store/features/userinfo/usernameslice'
+import ProfileModal, { ProfileOption } from './common-modal'
+import { useEffect } from 'react'
+import {
+  updateUsername,
+  updateSignupSuccess,
+} from '@/app/store/features/userinfo/usernameslice'
 
 export const Navbar = () => {
   const router = useRouter()
-  const [showDropdown, setShowDropdown] = useState(false)
+  const dispatch = useDispatch()
+
+  const [showDropdown, setShowDropdown] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+
+  const username: string | null = useSelector(selectUsername)
+  const isSignupSuccess: boolean = useSelector(selectSignupSuccess)
+
+  useEffect(() => {
+    setIsLoggedIn(isSignupSuccess)
+  }, [isSignupSuccess])
+  console.log(isSignupSuccess, 'value of isSignupSuccess')
 
   const handleGameClick = () => {
     setShowDropdown(!showDropdown)
@@ -20,12 +41,37 @@ export const Navbar = () => {
   }
 
   const gameOptions: Option[] = [
-    { label: 'Guess The Pokemon', route: '/how-to-play' },
+    { label: 'Guess The Pokemon', route: '/guess-that-pokemon' },
     { label: 'Pokemon Scribble', route: '/pokemon-scribble' },
   ]
   const handleSearch = () => {
-    router.push('/auth/login')
+    if (isSignupSuccess) {
+      setShowModal(!showModal)
+    } else {
+      router.push('/auth/signup')
+    }
   }
+  console.log(username, 'username is this')
+
+  const handleLogout = () => {
+    dispatch(updateUsername(''))
+    dispatch(updateSignupSuccess(false))
+    setShowModal(false)
+  }
+
+  const profileOptions: ProfileOption[] = [
+    { label: 'Logout', onClick: () => handleLogout() },
+    { label: 'Edit Profile', onClick: () => console.log('edit profile') },
+    { label: 'Dark Mode', onClick: () => console.log('dark mode') },
+    {
+      label: 'Switch Account',
+      onClick: () => {
+        router.push('/auth/signup')
+        setShowModal(false)
+      },
+    },
+  ]
+  console.log(isLoggedIn, 'are we logged in ?')
   return (
     <nav>
       <div className='navbar py-4 px-2 flex w-full justify-between items-center text-white fixed bg-opacity-100 z-50 gap-4'>
@@ -52,10 +98,7 @@ export const Navbar = () => {
           <Link href='/pokemon-cards'>PokeDex </Link>
           <img src='/assets/logo/pokemon-icon.png' className='px-2 ' />
         </div>
-        <Link
-          href='/pokemon-scribble'
-          className='flex-grow mr-[-3rem] ml-[3rem]'
-        >
+        <Link href='/leaderboard' className='flex-grow mr-[-3rem] ml-[3rem]'>
           leaderboard
         </Link>
         <div className='flex mr-4 justify-center items-center'>
@@ -71,8 +114,13 @@ export const Navbar = () => {
           onClick={handleSearch}
           className='button-color text-white px-4 py-1 rounded-full mr-[2rem]'
         >
-          Login
+          {isLoggedIn ? username : 'Login'}
         </button>
+        {showModal && (
+          <div>
+            <ProfileModal options={profileOptions} isOpen={showModal} />
+          </div>
+        )}
       </div>
     </nav>
   )
