@@ -28,22 +28,14 @@ const HowToPlay: React.FC = () => {
   const handleSearch = () => {
     if (pokemonName.toLowerCase() == selectedHint.toLowerCase()) {
       setIsGuessCorrect(true)
+      router.push('/extra-pages/congratulations')
     } else {
       setIsGuessCorrect(false)
+      router.push('/extra-pages/failed')
     }
   }
   const pokemonUrl: string = `/assets/images/svg/${pokemonNo}.svg`
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSearch()
-    }
-  }
 
-  console.log(
-    selectedHint,
-    pokemonName,
-    'this is the selected hint and pokemonName'
-  )
   useEffect(() => {
     if (isGuessCorrect) {
       // Calculate points only when guessedAns updates
@@ -53,20 +45,20 @@ const HowToPlay: React.FC = () => {
           points: calculatedpoints,
           correctPokemonNumber: pokemonName,
           imageUrl: pokemonUrl,
-          gameType: 1,
+          gameType: 'guesspokemon',
         })
       )
-      router.push('/extra-pages/congratulations')
+      // router.push('/extra-pages/congratulations')
     } else if (isGuessCorrect != null) {
       dispatch(
         updatePoints({
           points: 0,
           correctPokemonNumber: pokemonName,
           imageUrl: pokemonUrl,
-          gameType: 1,
+          gameType: 'guesspokemon',
         })
       )
-      router.push('/extra-pages/failed')
+      // router.push('/extra-pages/failed')
     }
   }, [isGuessCorrect])
 
@@ -92,7 +84,6 @@ const HowToPlay: React.FC = () => {
     return shuffledArray
   }
   //conditionally render all the options
-
   const handlePlayClick = () => {
     setPlay(true)
   }

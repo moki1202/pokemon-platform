@@ -87,7 +87,7 @@ const Game: React.FC = () => {
           points: calculatedpoints,
           correctPokemonNumber: pokemonName,
           imageUrl: pokemonUrl,
-          gameType: 2,
+          gameType: 'pokemonscribble',
         })
       )
     } else {
@@ -96,7 +96,7 @@ const Game: React.FC = () => {
           points: 0,
           correctPokemonNumber: pokemonName,
           imageUrl: pokemonUrl,
-          gameType: 2,
+          gameType: 'pokemonscribble',
         })
       )
     }

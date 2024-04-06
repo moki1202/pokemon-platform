@@ -14,10 +14,10 @@ const CongratulationsPage: React.FC = () => {
   const url = object.imageUrl
 
   const handleClick = () => {
-    if (object.gameType == 2) {
+    if (object.gameType == 'pokemonscribble') {
       router.push('/pokemon-scribble')
-    } else if (object.gameType == 1) {
-      router.push('/how-to-play')
+    } else if (object.gameType == 'guesspokemon') {
+      router.push('/guess-that-pokemon')
     }
   }
   return (
