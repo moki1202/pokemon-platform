@@ -10,10 +10,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectSignupSuccess } from '@/app/store/features/userinfo/usernameslice'
 import ProfileModal, { ProfileOption } from './common-modal'
 import { useEffect } from 'react'
+
 import {
   updateUsername,
   updateSignupSuccess,
 } from '@/app/store/features/userinfo/usernameslice'
+
+import { supabaseConfig } from '@/app/auth/supabase/supabase-config'
+
+const supabase = supabaseConfig
 
 export const Navbar = () => {
   const router = useRouter()
@@ -48,7 +53,7 @@ export const Navbar = () => {
     if (isSignupSuccess) {
       setShowModal(!showModal)
     } else {
-      router.push('/auth/signup')
+      router.push('/auth/login')
     }
   }
   console.log(username, 'username is this')
