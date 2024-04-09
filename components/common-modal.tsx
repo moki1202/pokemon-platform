@@ -14,7 +14,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, options }) => {
   if (!isOpen) return null
 
   return (
-    <div className='absolute top-[5rem] right-[3rem] z-50 overflow-y-auto'>
+    <div className='profile-modal absolute top-[5rem] right-[3rem] z-50 overflow-y-auto'>
       <div className='bg-white rounded-lg overflow-hidden shadow-xl'>
         <div className='p-4'>
           {options.map((option, index) => (

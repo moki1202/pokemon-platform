@@ -4,11 +4,10 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { selectPointsGame2 } from '@/app/store/features/points-game2/pointsgame2slice'
 import { useSelector } from 'react-redux'
-import Card from '@/components/pokemoncard'
 import { selectUsername } from '@/app/store/features/userinfo/usernameslice'
-import { useState } from 'react'
 import { updateGamePoints } from '@/app/auth/supabase/calculatePoints'
 
+const Card = React.lazy(() => import('@/components/pokemoncard'))
 const CongratulationsPage: React.FC = () => {
   const router = useRouter()
   const object = useSelector(selectPointsGame2)
@@ -16,8 +15,6 @@ const CongratulationsPage: React.FC = () => {
   const correctPokemonName = object.correctPokemonNumber
   const url = object.imageUrl
   const username = useSelector(selectUsername)
-
-  const [gameName, setGameName] = useState<string>('')
 
   const handleClick = async () => {
     if (object.gameType == 'pokemonscribble') {

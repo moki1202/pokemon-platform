@@ -1,6 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 
+// Check if the environment variables are defined
+if (
+  !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  !process.env.NEXT_PUBLIC_SUPABASE_KEY
+) {
+  throw new Error('Supabase URL or API key is missing in environment variables')
+}
+
+// Create Supabase client using environment variables
 export const supabaseConfig = createClient(
-  `https://ehbbdhnoflxpuhvgbptn.supabase.co`,
-  `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoYmJkaG5vZmx4cHVodmdicHRuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxMjMwNTk1NywiZXhwIjoyMDI3ODgxOTU3fQ.trYtGnExZUQnICBzQdxzo2bqdlHwzl37GhgJEqNXWDs`
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_KEY
 )

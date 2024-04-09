@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import bcrypt from 'bcryptjs'
 import { updateSignupSuccess } from '@/app/store/features/userinfo/usernameslice'
 import { supabaseConfig } from '../supabase/supabase-config'
+import Link from 'next/link'
 
 const supabase = supabaseConfig
 
@@ -100,27 +101,45 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      <div className='py-[10rem] flex flex-col gap-4 w-1/4 justify-center items-center text-black'>
-        <input
-          type='text'
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type='email'
-          placeholder='Email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleSignUp}>Sign Up</button>
-        {error && <p>{error}</p>}
+      <div className='w-screen h-screen flex justify-center items-center text-black '>
+        <div className='flex flex-col flex-between bg-gray-100 rounded-3xl shadow-2xl w-1/4 p-10 gap-6'>
+          <div className='flex justify-center items-center'>
+            <Link href='/' className='flex-grow hover-glow'>
+              <img
+                src='/assets/logo/pikachu_icon.svg'
+                className='px-2 h-[4rem] w-[4rem]'
+              />
+            </Link>
+          </div>
+          <input
+            type='text'
+            placeholder='Username'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className='w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500'
+          />
+          <input
+            type='email'
+            placeholder='Email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className='w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500'
+          />
+          <input
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className='w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500'
+          />
+          <button
+            onClick={handleSignUp}
+            className='w-full px-4 py-2 button-color text-white rounded-xl focus:outline-none py-2'
+          >
+            Sign Up
+          </button>
+          {error && <p>{error}</p>}
+        </div>
       </div>
     </>
   )

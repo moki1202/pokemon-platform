@@ -1,12 +1,13 @@
 'use client'
 import React from 'react'
-import PokemonFusion from '@/components/pokemon-fusion'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectPokemonData } from '../store/features/pokemon-list/pokemonSlice'
 import { totalPokemon } from '@/constants/totalPokemon'
 import { useRouter } from 'next/navigation'
 import { updatePoints } from '../store/features/points-game2/pointsgame2slice'
+
+const PokemonFusion = React.lazy(() => import('@/components/pokemon-fusion'))
 
 const HowToPlay: React.FC = () => {
   const router = useRouter()
