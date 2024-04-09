@@ -6,8 +6,8 @@ import { selectPointsGame2 } from '@/app/store/features/points-game2/pointsgame2
 import { useSelector } from 'react-redux'
 import { selectUsername } from '@/app/store/features/userinfo/usernameslice'
 import { updateGamePoints } from '@/app/auth/supabase/calculatePoints'
+import Card from '@/components/pokemoncard'
 
-const Card = React.lazy(() => import('@/components/pokemoncard'))
 const CongratulationsPage: React.FC = () => {
   const router = useRouter()
   const object = useSelector(selectPointsGame2)
