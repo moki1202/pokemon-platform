@@ -12,12 +12,12 @@ interface DropdownMenuProps {
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ options, onSelect }) => {
   return (
-    <div className='absolute text-base z-50 mt-2 w-32 rounded-md shadow-md bg-white'>
+    <div className='dropdown-menu absolute text-base z-50 mt-4 w-32 rounded-md shadow-md bg-white transition-transform transform-translate-y-2 opacity-100'>
       {options.map((option, index) => (
         <button
           key={index}
           onClick={() => onSelect(option.route)}
-          className='block w-full px-4 py-2 font-bold text-black hover:bg-gray-200 rounded-md'
+          className='block w-full px-4 py-2 font-bold text-black hover:bg-gray-200 rounded-md transition-colors duration-300'
         >
           {option.label}
         </button>

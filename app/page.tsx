@@ -24,6 +24,7 @@ export default function Home() {
       }
     }
 
+    // Fetch data if it's not already available
     if (pokemonData.length === 0) {
       fetchData()
     } else {
@@ -31,16 +32,14 @@ export default function Home() {
     }
   }, [dispatch, pokemonData.length])
   return (
-    <>
-      <div className='h-screen main-2'>
-        <div className='w-full main h-screen flex items-center justify-center '>
-          {isLoading && (
-            <LazyLoad height={400} offset={100}>
-              <div className='lazy-loader'></div>
-            </LazyLoad>
-          )}
-        </div>
+    <div className='h-screen main-2'>
+      <div className='w-full main h-screen flex items-center justify-center'>
+        {isLoading && (
+          <LazyLoad height={400} offset={100}>
+            <div className='lazy-loader'></div>
+          </LazyLoad>
+        )}
       </div>
-    </>
+    </div>
   )
 }

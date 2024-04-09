@@ -108,6 +108,14 @@ const Game: React.FC = () => {
 
   //if time left is zero than redirect to fail page
   if (timeLeft <= 0) {
+    dispatch(
+      updatePoints({
+        points: 0,
+        correctPokemonNumber: pokemonName,
+        imageUrl: pokemonUrl,
+        gameType: 'pokemonscribble',
+      })
+    )
     router.push(`/extra-pages/failed`)
   }
 

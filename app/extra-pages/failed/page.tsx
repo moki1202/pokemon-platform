@@ -4,7 +4,8 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { selectPointsGame2 } from '@/app/store/features/points-game2/pointsgame2slice'
 import { useSelector } from 'react-redux'
-import Card from '@/components/pokemoncard'
+
+const Card = React.lazy(() => import('@/components/pokemoncard'))
 
 const CongratulationsPage: React.FC = () => {
   const router = useRouter()
