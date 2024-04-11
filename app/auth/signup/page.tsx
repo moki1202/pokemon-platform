@@ -92,7 +92,7 @@ const SignUp: React.FC = () => {
       }
       dispatch(updateUsername(username))
       dispatch(updateSignupSuccess(true))
-      router.push('/auth/redirect-email')
+      router.push('/')
     } catch (error) {
       console.error('Error signing up:', (error as Error).message)
       setError('An error occurred while signing up.')
@@ -139,6 +139,9 @@ const SignUp: React.FC = () => {
             Sign Up
           </button>
           {error && <p>{error}</p>}
+          <p className='text-center text-blue-500'>
+            Already a user? <Link href='/auth/login'>Log in</Link>
+          </p>
         </div>
       </div>
     </>

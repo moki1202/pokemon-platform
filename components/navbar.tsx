@@ -104,18 +104,18 @@ export const Navbar = () => {
   return (
     <nav>
       <div className='navbar py-4 flex w-full justify-between items-center text-white fixed bg-opacity-100 z-50 gap-4'>
-        <div className='flex justify-center items-center'>
-          <Link href='/' className='flex-grow hover-glow'>
+        <div className='flex justify-center items-center flex-grow'>
+          <Link href='/' className='hover-glow'>
             <img
               src='/assets/logo/pikachu_icon.svg'
               className='px-2 h-[4rem] w-[4rem]'
             />
           </Link>
         </div>
-        <div className='flex-grow relative '>
+        <div className='flex-grow'>
           <SearchBar />
         </div>
-        <div className='relative flex-grow ml-[2rem]' ref={dropdownRef}>
+        <div className='flex-grow ml-[2rem] relative' ref={dropdownRef}>
           <button onClick={handleGameClick} className='flex-grow'>
             {showDropdown ? <>&#9660;</> : <>&#9650;</>} Games
           </button>
@@ -125,14 +125,14 @@ export const Navbar = () => {
             )}
           </div>
         </div>
-        <div className='flex justify-center items-center ml-[-4rem] z-10'>
+        <div className='flex justify-center items-center ml-[-2rem] z-10'>
           <Link href='/pokemon-cards'>PokeDex </Link>
           <img src='/assets/logo/pokemon-icon.png' className='px-2 ' />
         </div>
-        <Link href='/leaderboard' className='flex-grow mr-[-3rem] ml-[3rem]'>
-          leaderboard
+        <Link href='/leaderboard' className='flex-grow ml-[4rem]'>
+          Leaderboard
         </Link>
-        <div className='flex mr-4 justify-center items-center'>
+        <div className='flex relative mr-[3rem] justify-center items-center'>
           <Link
             href='https://github.com/moki1202/pokemon-app'
             className='flex-grow'
@@ -141,13 +141,26 @@ export const Navbar = () => {
           </Link>
           <img src='/assets/logo/github.svg' className='px-2 ' />
         </div>
-        <div ref={modalRef}>
-          <button
-            onClick={handleSearch}
-            className='button-color text-white px-4 py-1 rounded-full mr-[2rem]'
-          >
-            {isLoggedIn ? username : 'Login'}
-          </button>
+        <div ref={modalRef} className='flex items-center mr-[2rem]'>
+          {isLoggedIn ? (
+            <div
+              className='flex cursor-pointer items-center'
+              onClick={handleSearch}
+            >
+              <img
+                src='/assets/images/pikachu_wallpaper.jpg'
+                alt='Profile'
+                className='w-10 h-10 rounded-full mr-2 cursor-pointer'
+              />
+              <span className='cursor-pointer'>{username}</span>
+            </div>
+          ) : (
+            <Link href='/auth/signup'>
+              <button className='button-color text-white px-4 py-1 rounded-full mr-[2rem]'>
+                Login
+              </button>
+            </Link>
+          )}
           {showModal && (
             <div>
               <ProfileModal options={profileOptions} isOpen={showModal} />
