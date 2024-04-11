@@ -139,6 +139,9 @@ const SignUp: React.FC = () => {
             Sign Up
           </button>
           {error && <p>{error}</p>}
+          <p className='text-center text-blue-500'>
+            Already a user? <Link href='/auth/login'>Log in</Link>
+          </p>
         </div>
       </div>
     </>

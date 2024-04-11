@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { selectUsername } from '@/app/store/features/userinfo/usernameslice'
 import { updateGamePoints } from '@/app/auth/supabase/calculatePoints'
 import Card from '@/components/pokemoncard'
+import { useEffect } from 'react'
 
 const CongratulationsPage: React.FC = () => {
   const router = useRouter()
@@ -16,22 +17,27 @@ const CongratulationsPage: React.FC = () => {
   const url = object.imageUrl
   const username = useSelector(selectUsername)
 
+  useEffect(() => {
+    async function updatePoints() {
+      const success = await updateGamePoints({
+        username: username,
+        points: points,
+        gameType: object.gameType,
+      })
+      if (success) {
+        console.log('Game points updated successfully')
+      } else {
+        console.error('Failed to update game points')
+      }
+    }
+    updatePoints()
+  }, [object.gameType, points, username])
+
   const handleClick = async () => {
     if (object.gameType == 'pokemonscribble') {
       router.push('/pokemon-scribble')
     } else if (object.gameType == 'guesspokemon') {
       router.push('/guess-that-pokemon')
-    }
-
-    const success = await updateGamePoints({
-      username: username,
-      points: points,
-      gameType: object.gameType,
-    })
-    if (success) {
-      console.log('Game points updated successfully')
-    } else {
-      console.error('Failed to update game points')
     }
   }
 
