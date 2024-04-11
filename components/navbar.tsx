@@ -125,14 +125,14 @@ export const Navbar = () => {
             )}
           </div>
         </div>
-        <div className='flex justify-center items-center ml-[-4rem] z-10'>
+        <div className='flex justify-center items-center ml-[-2rem] z-10'>
           <Link href='/pokemon-cards'>PokeDex </Link>
           <img src='/assets/logo/pokemon-icon.png' className='px-2 ' />
         </div>
-        <Link href='/leaderboard' className='flex-grow ml-[3rem]'>
-          leaderboard
+        <Link href='/leaderboard' className='flex-grow ml-[4rem]'>
+          Leaderboard
         </Link>
-        <div className='flex mr-4 justify-center items-center'>
+        <div className='flex relative mr-[3rem] justify-center items-center'>
           <Link
             href='https://github.com/moki1202/pokemon-app'
             className='flex-grow'
