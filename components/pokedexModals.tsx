@@ -2,24 +2,24 @@
 import React, { useState, useEffect } from 'react'
 import '@/styles/PokedexModal.css'
 import axios from 'axios'
-import { get } from 'http';
+import { get } from 'http'
 
 // Individiual Pokedex entry from within FlavorTextEntries
 interface FlavorTextEntry {
-  flavor_text: string;
+  flavor_text: string
   language: {
-    name: string;
-    url: string;
-  };
+    name: string
+    url: string
+  }
   version: {
-    name: string;
-    url: string;
-  };
+    name: string
+    url: string
+  }
 }
 
-// Complete Pokedex entries 
+// Complete Pokedex entries
 interface FlavorTextEntries {
-  flavor_text_entries: FlavorTextEntry[];
+  flavor_text_entries: FlavorTextEntry[]
 }
 
 interface PokedexModalProps {
@@ -42,7 +42,7 @@ const PokedexModal: React.FC<PokedexModalProps> = ({
   image,
 }) => {
   const [pokemonTypes, setPokemonTypes] = useState<string[]>([])
-  const [flavorText, setFlavorText] = useState<string>("");
+  const [flavorText, setFlavorText] = useState<string>('')
 
   useEffect(() => {
     // Fetch additional details about the Pokemon when the modal is opened
@@ -56,9 +56,11 @@ const PokedexModal: React.FC<PokedexModalProps> = ({
         const pokemonTypes = types.map((type) => type.type.name.toUpperCase())
 
         // pokedexData is the complete response of api
-        const pokedexData: FlavorTextEntries = pokedexResponse.data;
-        const latestDescription : FlavorTextEntry[] = pokedexData.flavor_text_entries;
-        const latestDescriptionLanguageFiltered = getLastFlavorTextEntryByLanguage(latestDescription, "en");
+        const pokedexData: FlavorTextEntries = pokedexResponse.data
+        const latestDescription: FlavorTextEntry[] =
+          pokedexData.flavor_text_entries
+        const latestDescriptionLanguageFiltered =
+          getLastFlavorTextEntryByLanguage(latestDescription, 'en')
 
         setPokemonTypes(pokemonTypes)
         setCryUrl(typeResponse.data.cries?.latest || null)
@@ -105,7 +107,12 @@ const PokedexModal: React.FC<PokedexModalProps> = ({
         <div className='flavortext'>
           <p>{flavorText}</p>
         </div>
-        <button className='cry-button' onClick={playCry}>
+        <button className='cry-button flex' onClick={playCry}>
+          <img
+            src='/assets/logo/cry.png'
+            alt='cry icon'
+            className=' h-8 w-[2rem]'
+          />
           Cry
         </button>
       </div>
@@ -115,19 +122,21 @@ const PokedexModal: React.FC<PokedexModalProps> = ({
 
 export default PokedexModal
 
-
 // Laguuage input - "en" for English, "it" for Italian etc.
-const getLastFlavorTextEntryByLanguage = (flavorTextEntries: FlavorTextEntry[], language: string): string => {
+const getLastFlavorTextEntryByLanguage = (
+  flavorTextEntries: FlavorTextEntry[],
+  language: string
+): string => {
   // Filter out entries that match the specified language
   const filteredFlavorTextEntries = flavorTextEntries.filter(
     (entry) => entry.language.name === language
-  );
+  )
 
   // Get the last flavor text entry in the specified language
   const lastFlavorTextEntry = filteredFlavorTextEntries.length
-    ? filteredFlavorTextEntries[filteredFlavorTextEntries.length - 1].flavor_text
-    : "";
+    ? filteredFlavorTextEntries[filteredFlavorTextEntries.length - 1]
+        .flavor_text
+    : ''
 
-  return lastFlavorTextEntry;
-};
-
+  return lastFlavorTextEntry
+}

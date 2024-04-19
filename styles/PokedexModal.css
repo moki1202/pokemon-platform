@@ -16,9 +16,7 @@
   background-color: #262424;
   border-radius: 5px;
   padding: 40px;
-  width: fit-content;
   height: fit-content; /* Adjust height based on content */
-  min-width: 400px; /* Minimum width for the modal */
   min-height: 400px; /* Minimum height for the modal */
   /*max-width: 90%;
   max-height: 90%;*/
@@ -29,6 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 35%;
 }
 
 .close-button {
@@ -68,6 +67,6 @@
 .cry-button {
   position: absolute;
   top: calc(10% + 0px);
-  right: 60px;
+  right: 5rem;
   transform: translate(50%, 100%);
 }
