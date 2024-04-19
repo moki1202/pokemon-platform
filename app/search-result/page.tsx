@@ -18,7 +18,7 @@ const SearchResult = () => {
     pokemon.name.toLowerCase().includes(searchQuery.query.toLowerCase())
   )
   return (
-    <div className='container py-8 absolute mt-[70px] overflow-y-auto'>
+    <div className='container py-8 absolute mt-[8rem] overflow-y-auto'>
       <div className='flex flex-wrap justify-center items-center'>
         {(filteredPokemon as any[]).map((pokemon, index) => (
           <div key={pokemon.name} className='p-4'>
