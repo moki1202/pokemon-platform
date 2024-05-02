@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
 import { supabaseConfig } from '../supabase/supabase-config'
 import bcrypt from 'bcryptjs'
 import Link from 'next/link'
@@ -54,9 +53,10 @@ const Login: React.FC = () => {
 
       dispatch(updateUsername(userData.username))
       dispatch(updateSignupSuccess(true))
+      // Redirect user to dashboard or home page upon successful login
       router.push('/')
 
-      // Redirect user to dashboard or home page upon successful login
+      
     } catch (error) {
       console.error('Error logging in:', (error as Error).message)
       setError('An error occurred while logging in.')
@@ -89,6 +89,9 @@ const Login: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             className='w-full px-4 py-2 rounded-md border focus:outline-none focus:border-blue-500'
           />
+          <p className='text-center text-blue-500'>
+            Forgot your Password? <Link href='/auth/forgot-password'><p>Reset</p></Link>
+          </p>
           <button
             onClick={handleLogin}
             className='w-full px-4 py-2 button-color text-white rounded-xl focus:outline-none py-2'
