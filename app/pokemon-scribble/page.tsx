@@ -178,7 +178,7 @@ const Game: React.FC = () => {
                 className={pokemonImageClass}
               />
             </div>
-            <form onSubmit={handleGuess} className='guess-form'>
+            <form onSubmit={handleGuess} className='guess-form' autoComplete='off'>
               <input
                 type='text'
                 name='guess'
